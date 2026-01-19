@@ -24,46 +24,54 @@
         label{font-weight:bold;color:#555;margin-top:10px;display:block}
         .audio-controls{display:flex;gap:5px;align-items:center}
         .tts-status{font-size:11px;color:#666;margin-top:5px}
+        .voice-selector{background:#f0f8ff;padding:10px;border-radius:5px;margin-bottom:10px}
+        select{width:100%;padding:8px;border-radius:5px;border:1px solid #ddd}
     </style>
-<base target="_blank">
 </head>
 <body>
     <div id="info" class="container page active">
         <h3>📍 Mina Uppgifter</h3>
         
+        <div class="voice-selector">
+            <label>Välj svensk röst:</label>
+            <select id="voiceSelect">
+                <option value="">Laddar röster...</option>
+            </select>
+        </div>
+        
         <label>Adress:</label>
         <input id="adr" value="Gränsholmsbacken 2" placeholder="Din adress">
         <div class="audio-controls">
-            <button class="audio-btn" onclick="playGoogleTTS('Din adress är Gränsholmsbacken 2')">🔊</button>
-            <button class="audio-btn" onclick="playGoogleTTS('Din adress är Gränsholmsbacken 2', true)">🐌</button>
+            <button class="audio-btn" onclick="playOptimizedTTS('Din adress är Gränsholmsbacken 2')">🔊</button>
+            <button class="audio-btn" onclick="playOptimizedTTS('Din adress är Gränsholmsbacken 2', true)">🐌</button>
         </div>
         
         <label>Telefon/mobil nummer:</label>
         <input id="tel" value="070 418 56 49" placeholder="Ditt telefonnummer">
         <div class="audio-controls">
-            <button class="audio-btn" onclick="playGoogleTTS('Ditt telefonnummer är 070 418 56 49')">🔊</button>
-            <button class="audio-btn" onclick="playGoogleTTS('Ditt telefonnummer är 070 418 56 49', true)">🐌</button>
+            <button class="audio-btn" onclick="playOptimizedTTS('Ditt telefonnummer är 070 418 56 49')">🔊</button>
+            <button class="audio-btn" onclick="playOptimizedTTS('Ditt telefonnummer är 070 418 56 49', true)">🐌</button>
         </div>
         
         <label>Personnummer:</label>
         <input id="pers" value="19971231-8907" placeholder="Ditt personnummer">
         <div class="audio-controls">
-            <button class="audio-btn" onclick="playPersonnummer('19971231-8907')">🔊</button>
-            <button class="audio-btn" onclick="playPersonnummer('19971231-8907', true)">🐌</button>
+            <button class="audio-btn" onclick="playOptimizedPersonnummer('19971231-8907')">🔊</button>
+            <button class="audio-btn" onclick="playOptimizedPersonnummer('19971231-8907', true)">🐌</button>
         </div>
         
         <label>Hawa personnummer:</label>
         <input id="b1" value="20250102-2582" placeholder="Hawa personnummer">
         <div class="audio-controls">
-            <button class="audio-btn" onclick="playPersonnummer('20250102-2582')">🔊</button>
-            <button class="audio-btn" onclick="playPersonnummer('20250102-2582', true)">🐌</button>
+            <button class="audio-btn" onclick="playOptimizedPersonnummer('20250102-2582')">🔊</button>
+            <button class="audio-btn" onclick="playOptimizedPersonnummer('20250102-2582', true)">🐌</button>
         </div>
         
         <label>Leyla personnummer:</label>
         <input id="b2" value="20250102-0388" placeholder="Leyla personnummer">
         <div class="audio-controls">
-            <button class="audio-btn" onclick="playPersonnummer('20250102-0388')">🔊</button>
-            <button class="audio-btn" onclick="playPersonnummer('20250102-0388', true)">🐌</button>
+            <button class="audio-btn" onclick="playOptimizedPersonnummer('20250102-0388')">🔊</button>
+            <button class="audio-btn" onclick="playOptimizedPersonnummer('20250102-0388', true)">🐌</button>
         </div>
         
         <div class="saved-info">
@@ -71,41 +79,41 @@
             <div class="info-item">
                 <div><strong>Adress:</strong> Gränsholmsbacken 2</div>
                 <div class="audio-controls">
-                    <button class="audio-btn" onclick="playGoogleTTS('Gränsholmsbacken 2')">🔊</button>
-                    <button class="audio-btn" onclick="playGoogleTTS('Gränsholmsbacken 2', true)">🐌</button>
+                    <button class="audio-btn" onclick="playOptimizedTTS('Gränsholmsbacken 2')">🔊</button>
+                    <button class="audio-btn" onclick="playOptimizedTTS('Gränsholmsbacken 2', true)">🐌</button>
                 </div>
             </div>
             <div class="info-item">
                 <div><strong>Telefon:</strong> 070 418 56 49</div>
                 <div class="audio-controls">
-                    <button class="audio-btn" onclick="playGoogleTTS('070 418 56 49')">🔊</button>
-                    <button class="audio-btn" onclick="playGoogleTTS('070 418 56 49', true)">🐌</button>
+                    <button class="audio-btn" onclick="playOptimizedTTS('070 418 56 49')">🔊</button>
+                    <button class="audio-btn" onclick="playOptimizedTTS('070 418 56 49', true)">🐌</button>
                 </div>
             </div>
             <div class="info-item">
                 <div><strong>Personnummer:</strong> 19971231-8907</div>
                 <div class="audio-controls">
-                    <button class="audio-btn" onclick="playPersonnummer('19971231-8907')">🔊</button>
-                    <button class="audio-btn" onclick="playPersonnummer('19971231-8907', true)">🐌</button>
+                    <button class="audio-btn" onclick="playOptimizedPersonnummer('19971231-8907')">🔊</button>
+                    <button class="audio-btn" onclick="playOptimizedPersonnummer('19971231-8907', true)">🐌</button>
                 </div>
             </div>
             <div class="info-item">
                 <div><strong>Hawa:</strong> 20250102-2582</div>
                 <div class="audio-controls">
-                    <button class="audio-btn" onclick="playPersonnummer('20250102-2582')">🔊</button>
-                    <button class="audio-btn" onclick="playPersonnummer('20250102-2582', true)">🐌</button>
+                    <button class="audio-btn" onclick="playOptimizedPersonnummer('20250102-2582')">🔊</button>
+                    <button class="audio-btn" onclick="playOptimizedPersonnummer('20250102-2582', true)">🐌</button>
                 </div>
             </div>
             <div class="info-item">
                 <div><strong>Leyla:</strong> 20250102-0388</div>
                 <div class="audio-controls">
-                    <button class="audio-btn" onclick="playPersonnummer('20250102-0388')">🔊</button>
-                    <button class="audio-btn" onclick="playPersonnummer('20250102-0388', true)">🐌</button>
+                    <button class="audio-btn" onclick="playOptimizedPersonnummer('20250102-0388')">🔊</button>
+                    <button class="audio-btn" onclick="playOptimizedPersonnummer('20250102-0388', true)">🐌</button>
                 </div>
             </div>
         </div>
         
-        <div class="tts-status">Använder Google Translate TTS för naturligt ljud</div>
+        <div class="tts-status">Optimerat för svenskt tal</div>
         
         <div style="text-align:center;margin-top:20px">
             <button onclick="save()">💾 Spara</button>
@@ -117,8 +125,8 @@
         <h3>🎓 Träna på din information</h3>
         
         <div style="text-align:center;margin:15px 0">
-            <button class="audio-btn" onclick="playCurrentQuestion()">🔊 Spela fråga</button>
-            <button class="audio-btn" onclick="playCurrentQuestion(true)">🔊🐌 Långsamt</button>
+            <button class="audio-btn" onclick="playOptimizedCurrentQuestion()">🔊 Spela fråga</button>
+            <button class="audio-btn" onclick="playOptimizedCurrentQuestion(true)">🔊🐌 Långsamt</button>
         </div>
         
         <div id="qdiv" class="question"></div>
@@ -136,8 +144,8 @@
         
         <div id="sol" class="answer-box">
             <div style="text-align:center;margin-bottom:10px">
-                <button class="audio-btn" onclick="playAnswer()">🔊 Spela svar</button>
-                <button class="audio-btn" onclick="playAnswer(true)">🔊🐌 Långsamt</button>
+                <button class="audio-btn" onclick="playOptimizedAnswer()">🔊 Spela svar</button>
+                <button class="audio-btn" onclick="playOptimizedAnswer(true)">🔊🐌 Långsamt</button>
             </div>
             <div id="corr"></div>
         </div>
@@ -145,6 +153,8 @@
 
     <script>
         let data = {}, q = [], cur = {};
+        let voices = [];
+        let selectedVoice = null;
         
         // Förifylld data
         data = {
@@ -155,85 +165,121 @@
             b2: "20250102-0388"
         };
 
-        // FUNKTION FÖR PERSONNUMMER UTTAL
+        // LADDA RÖSTER OCH VÄLJ SVENSKA
+        function loadVoices() {
+            voices = speechSynthesis.getVoices();
+            const voiceSelect = document.getElementById('voiceSelect');
+            voiceSelect.innerHTML = '';
+            
+            // Hitta svenska röster
+            const swedishVoices = voices.filter(voice => 
+                voice.lang.includes('sv') || 
+                voice.name.toLowerCase().includes('swedish') ||
+                voice.name.toLowerCase().includes('svenska')
+            );
+            
+            if (swedishVoices.length > 0) {
+                swedishVoices.forEach((voice, index) => {
+                    const option = document.createElement('option');
+                    option.value = voice.name;
+                    option.textContent = `${voice.name} (${voice.lang})`;
+                    if (index === 0) option.selected = true;
+                    voiceSelect.appendChild(option);
+                });
+                selectedVoice = swedishVoices[0];
+            } else {
+                // Använd första bästa röst om inga svenska finns
+                if (voices.length > 0) {
+                    selectedVoice = voices[0];
+                    const option = document.createElement('option');
+                    option.value = selectedVoice.name;
+                    option.textContent = `${selectedVoice.name} (${selectedVoice.lang})`;
+                    option.selected = true;
+                    voiceSelect.appendChild(option);
+                }
+            }
+        }
+
+        document.getElementById('voiceSelect').addEventListener('change', function() {
+            selectedVoice = voices.find(voice => voice.name === this.value);
+        });
+
+        // FÖRBÄTTRAT TAL-SYSTEM
+        function playOptimizedTTS(text, slow = false) {
+            if ('speechSynthesis' in window) {
+                speechSynthesis.cancel();
+                
+                // Använd Google TTS först (funkar lokalt)
+                const lang = 'sv';
+                const speed = slow ? '0.7' : '1.0';
+                const ttsUrl = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(text)}&tl=${lang}&ttsspeed=${speed}&client=tw-ob`;
+                
+                const audio = new Audio(ttsUrl);
+                audio.play().catch(error => {
+                    console.log('Google TTS misslyckades, använder Web Speech API');
+                    // Fallback till Web Speech API med optimerade inställningar
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    if (selectedVoice) {
+                        utterance.voice = selectedVoice;
+                    }
+                    utterance.lang = 'sv-SE';
+                    utterance.rate = slow ? 0.8 : 1.0;
+                    utterance.pitch = 0.95;
+                    utterance.volume = 1;
+                    speechSynthesis.speak(utterance);
+                });
+            }
+        }
+
+        // OPTIMERAD PERSONNUMMER UTTAL
         function formatPersonnummerForTTS(personnummer) {
-            // Ta bort mellanslag och bindestreck
             const clean = personnummer.replace(/[\s-]/g, '');
-            
-            // Dela upp i grupper för naturligt svenskt uttal
-            const year = clean.substring(0, 4);      // 1997 → "nitton hundra nittiosju"
-            const month = clean.substring(4, 6);     // 12 → "tolv"
-            const day = clean.substring(6, 8);       // 31 → "trettioett"
-            const lastFour = clean.substring(8, 12); // 8907 → "åttionio nollsju"
-            
-            // Konvertera månad och dag till namn för korrekt uttal
-            const monthNames = ['noll-ett', 'noll-två', 'noll-tre', 'noll-fyra', 'noll-fem', 'noll-sexa', 
-                               'noll-sju', 'noll-åtta', 'noll-nio', 'tio', 'elva', 'tolv'];
-            const dayNames = ['noll-ett', 'noll-två', 'noll-tre', 'noll-fyra', 'noll-fem', 'noll-sexa', 
-                             'noll-sju', 'noll-åtta', 'noll-nio', 'tio', 'elva', 'tolv', 'tretton', 'fjorton', 
-                             'femton', 'sexton', 'sjutton', 'arton', 'nitton', 'tjugo', 'tjugoett', 'tjugotvå', 
-                             'tjugotre', 'tjugofyra', 'tjugofem', 'tjugosex', 'tjugosju', 'tjugoåtta', 
-                             'tjugonio', 'trettio', 'trettioett'];
-            
-            const monthName = monthNames[parseInt(month) - 1] || month;
-            const dayName = dayNames[parseInt(day) - 1] || day;
+            const year = clean.substring(0, 4);
+            const month = clean.substring(4, 6);
+            const day = clean.substring(6, 8);
+            const lastFour = clean.substring(8, 12);
             
             // Separera de sista fyra siffrorna för korrekt uttal
             const lastFourSeparated = lastFour[0] + lastFour[1] + ' ' + lastFour[2] + lastFour[3];
             
-            // Formatera för naturligt svenskt uttal
             if (year.startsWith('20')) {
-                // 2025 → "tvåtusentjugofem"
-                return `${year} ${monthName} ${dayName} ${lastFourSeparated}`;
+                return `${year} ${month}-${day} ${lastFourSeparated}`;
             } else {
-                // 1997 → "nitton hundra nittiosju"
-                return `${year} ${monthName} ${dayName} ${lastFourSeparated}`;
+                return `${year} ${month}-${day} ${lastFourSeparated}`;
             }
         }
 
-        // GOOGLE TRANSLATE TTS
-        function playGoogleTTS(text, slow = false) {
-            // Rensa text från specialtecken
-            const cleanText = text.replace(/[<>]/g, '');
-            
-            // Bygg Google Translate TTS URL
-            const lang = 'sv';
-            const speed = slow ? '0.7' : '1.0';
-            const ttsUrl = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(cleanText)}&tl=${lang}&ttsspeed=${speed}&client=tw-ob`;
-            
-            // Skapa audio element
-            const audio = new Audio(ttsUrl);
-            audio.play().catch(error => {
-                console.log('Google TTS misslyckades:', error);
-                // Fallback till Web Speech API
-                fallbackSpeech(cleanText, slow);
-            });
-        }
-
-        // SPECIELL FUNKTION FÖR PERSONNUMMER
-        function playPersonnummer(personnummer, slow = false) {
+        // OPTIMERADE PLAY FUNCTIONS
+        function playOptimizedPersonnummer(personnummer, slow = false) {
             const formatted = formatPersonnummerForTTS(personnummer);
-            playGoogleTTS(formatted, slow);
+            playOptimizedTTS(formatted, slow);
         }
 
-        // FALLBACK TILL WEB SPEECH API
-        function fallbackSpeech(text, slow = false) {
-            if ('speechSynthesis' in window) {
-                speechSynthesis.cancel();
-                const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = 'sv-SE';
-                utterance.rate = slow ? 0.8 : 1.0;
-                utterance.pitch = 0.95;
-                speechSynthesis.speak(utterance);
+        function playOptimizedCurrentQuestion(slow = false) {
+            let question = cur.q;
+            if (question.includes('personnummer')) {
+                const formattedNummer = formatPersonnummerForTTS(cur.a);
+                question = question.replace('?', '') + ' ' + formattedNummer;
             }
+            playOptimizedTTS(question, slow);
         }
 
-        // FUNKTION FÖR ATT NORMALISERA SVAR (ta bort streck, mellanslag etc.)
+        function playOptimizedAnswer(slow = false) {
+            let answer = 'Rätt svar är: ';
+            if (cur.a.match(/\d{8}-\d{4}/)) {
+                answer += formatPersonnummerForTTS(cur.a);
+            } else {
+                answer += cur.a;
+            }
+            playOptimizedTTS(answer, slow);
+        }
+
+        // FUNKTION FÖR ATT NORMALISERA SVAR
         function normalizeAnswer(answer) {
             return answer.replace(/[\s-]/g, '');
         }
 
-        // Spara information
+        // Resten av funktionerna (save, train, check, etc.)
         function save() {
             data = {
                 adr: document.getElementById('adr').value.trim(),
@@ -247,7 +293,6 @@
             alert('✅ Information sparad!');
         }
 
-        // Starta träning
         function train() {
             q = [
                 {q: 'Vad är din adress?', a: data.adr},
@@ -262,7 +307,6 @@
             nextQ();
         }
 
-        // Nästa fråga
         function nextQ() {
             if (q.length === 0) return;
             cur = q[Math.floor(Math.random() * q.length)];
@@ -273,7 +317,6 @@
             document.getElementById('ans').focus();
         }
 
-        // Kontrollera svar med FLEXIBEL VALIDERING
         function check() {
             const userAnswer = document.getElementById('ans').value.trim();
             const fb = document.getElementById('fb');
@@ -285,7 +328,6 @@
                 return;
             }
             
-            // NORMALISERA BÅDA SVAREN (ta bort streck, mellanslag etc.)
             const normalizedUserAnswer = normalizeAnswer(userAnswer);
             const normalizedCorrectAnswer = normalizeAnswer(cur.a);
             
@@ -300,41 +342,16 @@
             }
         }
 
-        // Tillbaka till info
         function back() {
             document.getElementById('train').classList.remove('active');
             document.getElementById('info').classList.add('active');
         }
 
-        // PLAY FUNCTIONS MED KORREKT FORMATERING
-        function playCurrentQuestion(slow = false) {
-            let question = cur.q;
-            
-            // Om det gäller personnummer, formatera korrekt
-            if (question.includes('personnummer')) {
-                const formattedNummer = formatPersonnummerForTTS(cur.a);
-                question = question.replace('?', '') + ' ' + formattedNummer;
-            }
-            
-            playGoogleTTS(question, slow);
-        }
-
-        function playAnswer(slow = false) {
-            let answer = 'Rätt svar är: ';
-            
-            // Formatera beroende på typ
-            if (cur.a.match(/\d{8}-\d{4}/)) {
-                answer += formatPersonnummerForTTS(cur.a);
-            } else {
-                answer += cur.a;
-            }
-            
-            playGoogleTTS(answer, slow);
-        }
-
         // Initiera
         window.onload = function() {
+            loadVoices();
             localStorage.setItem('userData', JSON.stringify(data));
+            speechSynthesis.onvoiceschanged = loadVoices;
         };
     </script>
 </body>
