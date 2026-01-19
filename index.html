@@ -6,20 +6,117 @@
 <title>Min Info Tränare</title>
 
 <style>
-body{font-family:Arial;max-width:500px;margin:20px auto;padding:20px;background:#f5f5f5}
-.container{background:white;padding:25px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.1);margin-bottom:20px}
-input{width:100%;padding:12px;margin:8px 0;border:1px solid #ddd;border-radius:5px;font-size:14px}
-button{background:#4CAF50;color:white;padding:12px 24px;border:none;border-radius:5px;margin:5px;cursor:pointer}
-button:hover{background:#45a049}
-.audio-btn{background:#2196F3;padding:8px 16px;font-size:12px}
-.page{display:none}.page.active{display:block}
-.question{font-size:18px;margin:15px 0;padding:15px;background:#f0f8ff;border-radius:5px;text-align:center}
-.feedback{margin:10px 0;padding:10px;border-radius:5px;font-weight:bold;text-align:center}
-.correct{background:#d4edda;color:#155724}
-.incorrect{background:#f8d7da;color:#72121f}
-.answer-box{background:#fff3cd;padding:15px;margin:10px 0;border-radius:5px;display:none}
-.voice-selector{background:#f0f8ff;padding:10px;border-radius:5px;margin-bottom:10px}
-select{width:100%;padding:8px}
+:root{
+  --green:#4CAF50;
+  --blue:#2196F3;
+  --bg:#f2f4f8;
+  --card:#ffffff;
+  --text:#222;
+}
+
+*{box-sizing:border-box}
+
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;
+  background:var(--bg);
+  margin:0;
+  padding:15px;
+  color:var(--text);
+}
+
+.container{
+  background:var(--card);
+  max-width:520px;
+  margin:auto;
+  padding:20px;
+  border-radius:14px;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+}
+
+h3{text-align:center;margin-top:0}
+
+label{
+  font-weight:600;
+  margin-top:15px;
+  display:block;
+}
+
+input{
+  width:100%;
+  padding:14px;
+  font-size:16px;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+
+button{
+  border:none;
+  border-radius:10px;
+  padding:14px 18px;
+  font-size:15px;
+  cursor:pointer;
+}
+
+.main-btn{
+  background:var(--green);
+  color:#fff;
+  width:100%;
+  margin-top:20px;
+}
+
+.audio-row{
+  display:flex;
+  gap:10px;
+  margin-top:6px;
+}
+
+.audio-btn{
+  flex:1;
+  background:var(--blue);
+  color:white;
+}
+
+.page{display:none}
+.page.active{display:block}
+
+.question{
+  background:#eef5ff;
+  padding:16px;
+  border-radius:10px;
+  font-size:18px;
+  text-align:center;
+  margin:20px 0;
+}
+
+.feedback{
+  text-align:center;
+  font-weight:bold;
+  margin-top:15px;
+}
+
+.correct{color:#2e7d32}
+.incorrect{color:#c62828}
+
+.answer-box{
+  background:#fff3cd;
+  padding:15px;
+  border-radius:10px;
+  margin-top:15px;
+  display:none;
+}
+
+.voice-selector{
+  background:#eef5ff;
+  padding:10px;
+  border-radius:10px;
+  margin-bottom:15px;
+}
+
+select{
+  width:100%;
+  padding:10px;
+  font-size:15px;
+}
 </style>
 </head>
 
@@ -29,33 +126,46 @@ select{width:100%;padding:8px}
 <h3>📍 Mina Uppgifter</h3>
 
 <div class="voice-selector">
-<label>Välj svensk röst:</label>
+<label>Svensk röst</label>
 <select id="voiceSelect"></select>
 </div>
 
-<label>Adress:</label>
+<label>Adress</label>
 <input id="adr" value="Gränsholmsbacken 2">
+<div class="audio-row">
 <button class="audio-btn" onclick="speak('Din adress är ' + adr.value)">🔊</button>
-
-<label>Telefon:</label>
-<input id="tel" value="070 418 56 49">
-<button class="audio-btn" onclick="speak('Ditt telefonnummer är ' + tel.value)">🔊</button>
-
-<label>Ditt personnummer:</label>
-<input id="pers" value="19971231-8907">
-<button class="audio-btn" onclick="speak(formatPN(pers.value))">🔊</button>
-
-<label>Hawa personnummer:</label>
-<input id="b1" value="20250102-2582">
-<button class="audio-btn" onclick="speak('Hawa personnummer är ' + formatPN(b1.value))">🔊</button>
-
-<label>Leyla personnummer:</label>
-<input id="b2" value="20250102-0388">
-<button class="audio-btn" onclick="speak('Leyla personnummer är ' + formatPN(b2.value))">🔊</button>
-
-<div style="text-align:center;margin-top:15px">
-<button onclick="train()">🎯 Träna</button>
+<button class="audio-btn" onclick="speak('Din adress är ' + adr.value,true)">🐌</button>
 </div>
+
+<label>Telefon</label>
+<input id="tel" value="070 418 56 49">
+<div class="audio-row">
+<button class="audio-btn" onclick="speak(formatPhone(tel.value))">🔊</button>
+<button class="audio-btn" onclick="speak(formatPhone(tel.value),true)">🐌</button>
+</div>
+
+<label>Ditt personnummer</label>
+<input id="pers" value="19971231-8907">
+<div class="audio-row">
+<button class="audio-btn" onclick="speak(formatPN(pers.value))">🔊</button>
+<button class="audio-btn" onclick="speak(formatPN(pers.value),true)">🐌</button>
+</div>
+
+<label>Hawa personnummer</label>
+<input id="b1" value="20250102-2582">
+<div class="audio-row">
+<button class="audio-btn" onclick="speak('Hawa ' + formatPN(b1.value))">🔊</button>
+<button class="audio-btn" onclick="speak('Hawa ' + formatPN(b1.value),true)">🐌</button>
+</div>
+
+<label>Leyla personnummer</label>
+<input id="b2" value="20250102-0388">
+<div class="audio-row">
+<button class="audio-btn" onclick="speak('Leyla ' + formatPN(b2.value))">🔊</button>
+<button class="audio-btn" onclick="speak('Leyla ' + formatPN(b2.value),true)">🐌</button>
+</div>
+
+<button class="main-btn" onclick="train()">🎯 Träna</button>
 </div>
 
 <div id="train" class="container page">
@@ -63,117 +173,108 @@ select{width:100%;padding:8px}
 
 <div class="question" id="qdiv"></div>
 
-<input id="ans" placeholder="Skriv svaret">
+<input id="ans" placeholder="Skriv ditt svar">
 
-<div style="text-align:center">
-<button onclick="check()">✅ Kontrollera</button>
-<button onclick="nextQ()">🔄 Ny fråga</button>
-<button onclick="back()">⬅️ Tillbaka</button>
-</div>
+<button class="main-btn" onclick="check()">✅ Kontrollera</button>
+<button class="main-btn" onclick="nextQ()">🔄 Ny fråga</button>
+<button class="main-btn" onclick="back()">⬅️ Tillbaka</button>
 
-<div id="fb"></div>
+<div id="fb" class="feedback"></div>
 
 <div id="sol" class="answer-box">
-<button class="audio-btn" onclick="speak('Rätt svar är ' + cur.a)">🔊</button>
+<button class="audio-btn" onclick="speak('Rätt svar är ' + cur.a,true)">🔊</button>
 <div id="corr"></div>
 </div>
 </div>
 
 <script>
-let voices = [];
-let selectedVoice = null;
-let q = [];
-let cur = {};
+let voices=[],selectedVoice=null,q=[],cur={};
 
 function loadVoices(){
-    voices = speechSynthesis.getVoices();
-    const sel = document.getElementById('voiceSelect');
-    sel.innerHTML = '';
-
-    const sv = voices.filter(v => v.lang.startsWith('sv'));
-
-    if(!sv.length){
-        alert('⚠️ Ingen svensk röst installerad på denna enhet.');
-        return;
-    }
-
-    sv.forEach((v,i)=>{
-        const o = document.createElement('option');
-        o.value = v.name;
-        o.textContent = v.name;
-        if(i===0){o.selected=true;selectedVoice=v;}
-        sel.appendChild(o);
-    });
-
-    sel.onchange = () => {
-        selectedVoice = voices.find(v=>v.name===sel.value);
-    };
+  voices=speechSynthesis.getVoices();
+  const sel=voiceSelect;
+  sel.innerHTML='';
+  const sv=voices.filter(v=>v.lang.startsWith('sv'));
+  if(!sv.length){alert('⚠️ Ingen svensk röst installerad');return;}
+  sv.forEach((v,i)=>{
+    const o=document.createElement('option');
+    o.value=v.name;o.text=v.name;
+    if(i===0){o.selected=true;selectedVoice=v;}
+    sel.appendChild(o);
+  });
+  sel.onchange=()=>selectedVoice=voices.find(v=>v.name===sel.value);
 }
 
-function speak(text, slow=false){
-    speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    u.lang = 'sv-SE';
-    u.voice = selectedVoice;
-    u.rate = slow ? 0.8 : 1.0;
-    u.pitch = 1.0;
-    speechSynthesis.speak(u);
+function speak(text,slow=false){
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='sv-SE';
+  u.voice=selectedVoice;
+  u.rate=slow?0.6:0.8;
+  u.pitch=0.95;
+  speechSynthesis.speak(u);
 }
 
-function formatPN(pn){
-    const c = pn.replace(/[-\s]/g,'');
-    return `${c.substr(0,4)} ${c.substr(4,2)} ${c.substr(6,2)} ${c.substr(8,2)} ${c.substr(10,2)}`;
+function formatPN(p){
+  const c=p.replace(/\D/g,'');
+  return `${c.slice(0,4)}… ${c.slice(4,6)}… ${c.slice(6,8)}… ${c.slice(8,10)}… ${c.slice(10,12)}`;
+}
+
+function formatPhone(t){
+  return 'Telefonnummer ' + t.replace(/\s/g,'… ');
 }
 
 function train(){
-    q = [
-        {q:'Vad är din adress?', a: adr.value},
-        {q:'Vad är ditt telefonnummer?', a: tel.value},
-        {q:'Vad är ditt personnummer?', a: pers.value},
-        {q:'Vad är Hawa personnummer?', a: b1.value},
-        {q:'Vad är Leyla personnummer?', a: b2.value}
-    ];
-    info.classList.remove('active');
-    trainDiv.classList.add('active');
-    nextQ();
+  q=[
+    {q:'Vad är din adress?',a:adr.value},
+    {q:'Vad är ditt telefonnummer?',a:tel.value},
+    {q:'Vad är ditt personnummer?',a:pers.value},
+    {q:'Vad är Hawa personnummer?',a:b1.value},
+    {q:'Vad är Leyla personnummer?',a:b2.value}
+  ];
+  info.classList.remove('active');
+  trainDiv.classList.add('active');
+  nextQ();
 }
 
 function nextQ(){
-    cur = q[Math.floor(Math.random()*q.length)];
-    qdiv.textContent = cur.q;
-    ans.value='';
-    fb.innerHTML='';
-    sol.style.display='none';
+  cur=q[Math.floor(Math.random()*q.length)];
+  qdiv.textContent=cur.q;
+  ans.value='';
+  fb.textContent='';
+  sol.style.display='none';
 }
 
 function check(){
-    if(ans.value.replace(/\s|-/g,'') === cur.a.replace(/\s|-/g,'')){
-        fb.innerHTML='<div class="feedback correct">✅ Rätt!</div>';
-        setTimeout(nextQ,1500);
-    }else{
-        fb.innerHTML='<div class="feedback incorrect">❌ Fel</div>';
-        corr.textContent='Rätt svar: ' + cur.a;
-        sol.style.display='block';
-    }
+  if(ans.value.replace(/\D/g,'')===cur.a.replace(/\D/g,'')){
+    fb.textContent='✅ Rätt!';
+    fb.className='feedback correct';
+    setTimeout(nextQ,1500);
+  }else{
+    fb.textContent='❌ Fel';
+    fb.className='feedback incorrect';
+    corr.textContent='Rätt svar: '+cur.a;
+    sol.style.display='block';
+  }
 }
 
 function back(){
-    trainDiv.classList.remove('active');
-    info.classList.add('active');
+  trainDiv.classList.remove('active');
+  info.classList.add('active');
 }
 
-window.onload = ()=>{
-    loadVoices();
-    speechSynthesis.onvoiceschanged = loadVoices;
+window.onload=()=>{
+  loadVoices();
+  speechSynthesis.onvoiceschanged=loadVoices;
 };
 
-const info = document.getElementById('info');
-const trainDiv = document.getElementById('train');
-const qdiv = document.getElementById('qdiv');
-const ans = document.getElementById('ans');
-const fb = document.getElementById('fb');
-const sol = document.getElementById('sol');
-const corr = document.getElementById('corr');
+const info=document.getElementById('info');
+const trainDiv=document.getElementById('train');
+const qdiv=document.getElementById('qdiv');
+const ans=document.getElementById('ans');
+const fb=document.getElementById('fb');
+const sol=document.getElementById('sol');
+const corr=document.getElementById('corr');
 </script>
 
 </body>
